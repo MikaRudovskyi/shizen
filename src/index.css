@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Color: named, deliberate roles, not a generic palette ---- */
+  --color-ink: #0b0b0d;          /* primary background - sumi ink black */
+  --color-ink-soft: #131316;     /* raised surface on ink */
+  --color-ink-line: #232327;     /* hairlines on ink */
+  --color-washi: #f5f0e6;        /* warm paper white - used sparingly, panels only */
+  --color-washi-dim: #e7ddc9;
+  --color-shu: #c4272a;          /* torii red - CTAs, primary accent */
+  --color-shu-bright: #e04347;
+  --color-sakura: #f1b8c4;       /* cherry blossom pink - culture/nature accent */
+  --color-sakura-deep: #d98fa0;
+  --color-gold: #c9a34e;         /* gold leaf - dividers, labels, numerals */
+  --color-gold-dim: #8a7239;
+  --color-indigo: #1b2a4a;       /* aizome indigo - gradients, depth, overlays */
+  --color-indigo-deep: #0f1a30;
+
+  /* ---- Type ---- */
+  --font-display: "Fraunces", "Shippori Mincho", ui-serif, serif;
+  --font-jp: "Shippori Mincho", "Fraunces", ui-serif, serif;
+  --font-body: "Zen Kaku Gothic New", "Hiragino Sans", ui-sans-serif, sans-serif;
+
+  --tracking-wideish: 0.08em;
+  --tracking-wide-lg: 0.22em;
+
+  --animate-fade-up: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-marquee: marquee 40s linear infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-washi);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-shu);
+  color: var(--color-washi);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-ink); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink-line);
+  border-radius: 999px;
+  border: 2px solid var(--color-ink);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-gold-dim); }
+
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.text-balance { text-wrap: balance; }
